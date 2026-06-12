@@ -1406,7 +1406,7 @@ class DungeonSim {
             }
 
             const presetAssignment = this.tabName === 'dungeon' ? 'dungeon' : 'cave';
-            const preset = apiData.output.find(p => p.preset?.assignment === presetAssignment);
+            let preset = apiData.output.find(p => p.preset?.assignment === presetAssignment);
 
             // fallback attempt - use the active preset if the correct assignment does not exist
             if (!preset) {
