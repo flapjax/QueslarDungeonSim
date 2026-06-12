@@ -1408,6 +1408,11 @@ class DungeonSim {
             const presetAssignment = this.tabName === 'dungeon' ? 'dungeon' : 'cave';
             const preset = apiData.output.find(p => p.preset?.assignment === presetAssignment);
 
+            // fallback attempt - use the active preset if the correct assignment does not exist
+            if (!preset) {
+                preset = apiData.output.find(p => p.preset?.isActive === true);
+            }
+
             if (!preset) {
                 return { success: false, message: formatString(I18N.getConsoleMsg("INFO_NO_AVIL_PRESET"), presetAssignment) };
             }
